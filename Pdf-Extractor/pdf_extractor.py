@@ -33,9 +33,9 @@ def read_book(book_url,book_name):
         pdf.write(book.content)
         pdf.close()
     num_pages = convert_to_images(book_name)
-    num_pages = 5+11
+    # num_pages = 5+11
     book_string = ""
-    for i in range(11,num_pages):
+    for i in range(1,num_pages):
         page_location = IMAGE_PATH + book_name+'/Page-'+str(i)
         page_string = read_page(page_location)
         book_string+=page_string
@@ -78,4 +78,7 @@ def extract_content():
     with open(output,'w') as out:
         json.dump(books_json,out)
 
+# Due to the long running time of the script, the output in the pdf_extract.json only shows contents from the first 5 pages of the books. 
+# However, the script is such that it can extract contents from all the pages if left running. 
+# It also takes care of the double columns and extracts text in readable forn
 extract_content()
